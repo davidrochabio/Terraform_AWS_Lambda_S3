@@ -12,7 +12,7 @@ The data contains information about bank accounts. The bank supports accounts in
 The function makes use of a currency converstion rate API to dinnamicaly get the rates for each of the unique currencies in the dataset.
 API reference: https://www.exchangerate-api.com/docs/free
 
-### lambda function
+### Lambda Function
 The function listens to an S3 bucket for new files.
 When a new file is added to the bucket, the Lambda function checks if the file name is 'banking_dirty.csv'.
 If the name matches, the function reads the file from bucket and performs the following operations:

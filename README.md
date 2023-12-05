@@ -1,5 +1,7 @@
 ## Data transformation with lambda function and S3 buckets using Terraform
 
+![tf_aws](https://github.com/davidrochabio/terraform_aws_lambda_s3/assets/62852893/d4ca4942-0020-4444-a2df-b27bf9924c68)
+
 ### Prerequisites
 - An AWS account
 - AWS CLI configured with your AWS credentials

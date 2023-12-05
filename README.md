@@ -10,6 +10,7 @@
 -> Tip: Use docker to create lambda function custom layers. This [article](https://medium.com/simform-engineering/creating-lambda-layers-made-easy-with-docker-a-developers-guide-3bcfcf32d7c3) is a good reference.
 
 The requirements for the layer are inside the 'layer_requirements.txt' file.
+The layer should be placed in the same directory as 'main.tf' file and should be named as 'pandasrequests_layer.zip'. 
 
 ### Data and Goal
 The data contains information about bank accounts. The bank supports accounts in different currencies.

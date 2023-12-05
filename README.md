@@ -9,6 +9,8 @@
 
 -> Tip: Use docker to create lambda function custom layers. This [article](https://medium.com/simform-engineering/creating-lambda-layers-made-easy-with-docker-a-developers-guide-3bcfcf32d7c3) is a good reference.
 
+The requirements for the layer are inside the 'layer_requirements.txt' file.
+
 ### Data and Goal
 The data contains information about bank accounts. The bank supports accounts in different currencies.
 -> The goal is to clean the data and transform ammounts in different currencies to a common currency - like canadian dollars in this example.

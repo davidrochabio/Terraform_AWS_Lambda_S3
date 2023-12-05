@@ -5,12 +5,15 @@
 - AWS CLI configured with your AWS credentials
 - Terraform installed on your local machine
 
+-> Tip: Use docker to create lambda function custom layers. This [article](https://medium.com/simform-engineering/creating-lambda-layers-made-easy-with-docker-a-developers-guide-3bcfcf32d7c3) is a good reference.
+
 ### Data and Goal
 The data contains information about bank accounts. The bank supports accounts in different currencies.
 -> The goal is to clean the data and transform ammounts in different currencies to a common currency - like canadian dollars in this example.
 
 The function makes use of a currency converstion rate API to dinnamicaly get the rates for each of the unique currencies in the dataset.
-API reference: https://www.exchangerate-api.com/docs/free
+
+[API reference](https://www.exchangerate-api.com/docs/free)
 
 ### Lambda Function
 The function listens to an S3 bucket for new files.

@@ -6,36 +6,36 @@
 - An AWS account
 - AWS CLI configured with your AWS credentials
 - Terraform installed on your local machine
-
--> Tip: Use docker to create lambda function custom layers. This [article](https://medium.com/simform-engineering/creating-lambda-layers-made-easy-with-docker-a-developers-guide-3bcfcf32d7c3) is a good reference.
+- Docker to create lambda layer. You can do it without Docker, check [AWS docs](https://docs.aws.amazon.com/lambda/latest/dg/chapter-layers.html).
 
 The requirements for the layer are inside the 'layer_requirements.txt' file.
-The layer should be placed in the same directory as 'main.tf' file and should be named as 'pandasrequests_layer.zip'. 
+The layer should be placed in the same directory as 'main.tf' file and should be named 'pandasrequests_layer.zip'. 
 
 ### Data and Goal
 The data contains information about bank accounts. The bank supports accounts in different currencies.
--> The goal is to clean the data and transform ammounts in different currencies to a common currency - like canadian dollars in this example.
+-> The goal is to clean the data and transform ammounts in different currencies to a common currency - canadian dollar in this example.
 
-The function makes use of a currency converstion rate API to dinnamicaly get the rates for each of the unique currencies in the dataset.
+The function makes use of a currency convertion rate API to dinamically get the rates for the unique currencies present in the dataset.
 
 [API reference](https://www.exchangerate-api.com/docs/free)
 
 ### Lambda Function
 The function listens to an S3 bucket for new files.
-When a new file is added to the bucket, the Lambda function checks if the file name is 'banking_dirty.csv'.
-If the name matches, the function reads the file from bucket and performs the following operations:
+When a new file is added to the bucket, the bucket triggers the lambda function. 
+The Lambda function checks if the file name is 'banking_dirty.csv'.
+If the name matches, the function reads the file from the bucket and performs the following operations:
 - Normalizes column names to lower case.
-- Normalizes the date columns to desired format.
-- Adds a column with the exchange rate for each account and respective account currency.
+- Normalizes the date columns to the desired format.
+- Adds a column with the exchange rate for each account.
 - Adds a column with the account amount converted to the desired common currency.
 - Adds a column with the load date and time.
-- Writes the cleaned data to another S3 bucket.
+- Writes the transformed dataframe to another S3 bucket in csv format.
 
 ### Terraform and AWS 
 Terraform creates the following infrastructure in AWS:
 - Two s3 buckets
-- lambda function layer with pandas and requests
-- lambda function
+- lambda function (Python 3.11)
+- lambda function layer version with pandas and requests 
 - lambda function role and security policies
 - trigger from s3
 - notification

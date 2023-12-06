@@ -3,10 +3,11 @@
 ![Archit](https://github.com/davidrochabio/Terraform_AWS_Lambda_S3/assets/62852893/8bf2b2fc-1b33-4ac6-80d8-41fea08f9800)
 
 ### Prerequisites
-- An AWS account
-- AWS CLI configured with your AWS credentials
-- Terraform installed on your local machine
-- Docker to create lambda layer. You can do it without Docker, check [AWS docs](https://docs.aws.amazon.com/lambda/latest/dg/chapter-layers.html).
+- Git
+- An AWS account.
+- AWS CLI configured with your AWS credentials.
+- Terraform installed on your local machine.
+- Docker to create lambda layer. If you want to create a layer without Docker, check [AWS docs](https://docs.aws.amazon.com/lambda/latest/dg/chapter-layers.html).
 
 The requirements for the layer are inside the 'layer_requirements.txt' file.
 The layer should be placed in the same directory as 'main.tf' file and should be named 'pandasrequests_layer.zip'. 
@@ -24,14 +25,14 @@ The function listens to an S3 bucket for new files.
 When a new file is added to the bucket, the bucket triggers the lambda function. 
 The Lambda function checks if the file name is 'banking_dirty.csv'.
 If the name matches, the function reads the file from the bucket and performs the following operations:
-- Normalizes column names to lower case.
-- Normalizes the date columns to the desired format.
-- Adds a column with the exchange rate for each account.
-- Adds a column with the account amount converted to the desired common currency.
-- Adds a column with the load date and time.
-- Writes the transformed dataframe to another S3 bucket in csv format.
+- Normalizes column names to lower case
+- Normalizes the date columns to the desired format
+- Adds a column with the exchange rate for each account
+- Adds a column with the account amount converted to the desired common currency
+- Adds a column with the load date and time
+- Writes the transformed dataframe to another S3 bucket in csv format
 
-### Terraform and AWS 
+### Terraform and AWS resources
 Terraform creates the following infrastructure in AWS:
 - Two s3 buckets
 - lambda function (Python 3.11)

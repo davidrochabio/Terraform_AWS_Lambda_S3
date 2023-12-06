@@ -1,4 +1,4 @@
-## Data transformation with lambda function and S3 buckets using Terraform
+## Data transformation with lambda function and S3 buckets using IaC (Terraform)
 
 ![Archit](https://github.com/davidrochabio/Terraform_AWS_Lambda_S3/assets/62852893/8bf2b2fc-1b33-4ac6-80d8-41fea08f9800)
 

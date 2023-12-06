@@ -1,6 +1,6 @@
 ## Data transformation with lambda function and S3 buckets using Terraform
 
-![tf_aws](https://github.com/davidrochabio/terraform_aws_lambda_s3/assets/62852893/d4ca4942-0020-4444-a2df-b27bf9924c68)
+![Archit](https://github.com/davidrochabio/Terraform_AWS_Lambda_S3/assets/62852893/8bf2b2fc-1b33-4ac6-80d8-41fea08f9800)
 
 ### Prerequisites
 - An AWS account
@@ -39,3 +39,15 @@ Terraform creates the following infrastructure in AWS:
 - lambda function role and security policies
 - trigger from s3
 - notification
+
+### Usage
+- Create lambda layer with pandas and requests using docker and provided docker file:
+```
+docker build -t layer_image -f ./Dockerfile-layer .
+
+docker run -dit --name layer_container layer_image /bin/bash
+
+docker cp layer_container:/app/pandasrequests_layer.zip .
+
+docker rm -f layer_container && docker rmi layer_image
+```

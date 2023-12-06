@@ -86,13 +86,13 @@ aws s3 cp ./banking_dirty.csv s3://input-banking-dirty/banking_dirty.csv
 - Check CloudWatch logs to see execution.
 
 #### To destroy resources
-- Empty s3 buckets
+- Empty s3 buckets:
 ```
 aws s3 rm s3://output-banking-clean --recursive
 aws s3 rm s3://input-banking-dirty --recursive
 ```
 
-- Destroy resources
+- Destroy resources:
 ```
 terraform destroy
 ```

@@ -77,7 +77,7 @@ terraform plan
 ```
 terraform apply
 ```
-# PS: Terraform might throw an error if bucket names are already used in AWS. If that's the case, change bucket names in main.tf and in the lambda function.
+##### PS: Terraform might throw an error if bucket names are already used in AWS. If that's the case, change bucket names in main.tf and in the lambda function.
 - Send file to s3 bucket
 ```
 aws s3 cp ./banking_dirty.csv s3://input-banking-dirty/banking_dirty.csv
@@ -85,7 +85,7 @@ aws s3 cp ./banking_dirty.csv s3://input-banking-dirty/banking_dirty.csv
 
 - Check CloudWatch logs to see execution.
 
-## To destroy resources
+#### To destroy resources
 - Empty s3 buckets
 ```
 aws s3 rm s3://output-banking-clean --recursive

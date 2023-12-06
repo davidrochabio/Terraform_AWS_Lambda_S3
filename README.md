@@ -41,7 +41,14 @@ Terraform creates the following infrastructure in AWS:
 - notification
 
 ### Usage
-- Create lambda layer with pandas and requests using docker and provided docker file:
+- Clone repo and enter repo folder:
+```
+git clone https://github.com/davidrochabio/Terraform_AWS_Lambda_S3.git
+
+cd Terraform_AWS_Lambda_S3
+```
+
+- Create lambda layer with pandas and requests using docker and provided dockerfile:
 ```
 docker build -t layer_image -f ./Dockerfile-layer .
 
@@ -49,5 +56,43 @@ docker run -dit --name layer_container layer_image /bin/bash
 
 docker cp layer_container:/app/pandasrequests_layer.zip .
 
-docker rm -f layer_container && docker rmi layer_image
+docker rm -f layer_container
+
+docker rmi layer_image
+```
+
+- Initialize Terraform:
+```
+terraform init
+```
+
+- Validate main.tf and check plan:
+```
+terraform validate
+
+terraform plan
+```
+
+- Create resources in AWS:
+```
+terraform apply
+```
+# PS: Terraform might throw an error if bucket names are already used in AWS. If that's the case, change bucket names in main.tf and in the lambda function.
+- Send file to s3 bucket
+```
+aws s3 cp ./banking_dirty.csv s3://input-banking-dirty/banking_dirty.csv
+```
+
+- Check CloudWatch logs to see execution.
+
+## To destroy resources
+- Empty s3 buckets
+```
+aws s3 rm s3://output-banking-clean --recursive
+aws s3 rm s3://input-banking-dirty --recursive
+```
+
+- Destroy resources
+```
+terraform destroy
 ```

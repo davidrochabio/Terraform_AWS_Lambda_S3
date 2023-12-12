@@ -13,10 +13,20 @@ provider "aws" {
 
 resource "aws_s3_bucket" "input" {
   bucket = "input-banking-dirty"
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "aws s3 rm s3://input-banking-dirty --recursive"
+  }
 }
 
 resource "aws_s3_bucket" "output" {
   bucket = "output-banking-clean"
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "aws s3 rm s3://output-banking-clean --recursive"
+  }
 }
 
 data "aws_iam_policy_document" "assume_role" {
